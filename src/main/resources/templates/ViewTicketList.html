@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>View Ticket Item Lists</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <style>
+        a {
+            color: white;
+        }
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <h1 class="p-3">Ticket Item Lists</h1>
+  <table class="table table-bordered">
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Mark Completed</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+
+    <tr th:each="ticket: ${list}">
+      <td th:text="${ticket.id}"></td>
+      <td th:text="${ticket.title}"></td>
+      <td th:text="${ticket.date}"></td>
+      <td th:text="${ticket.status}"></td>
+      <td>
+        <button type="button" class="btn btn-success"><a href="#" th:href="@{/updateTicketStatus/{id}(id=${ticket.id})}">Mark Complete</a>
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary"><a href="#" th:href="@{/editTicketItem/{id}(id=${ticket.id})}">Edit</a></button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger"><a href="#" th:href="@{/deleteTicketItem/{id}(id=${ticket.id})}">Delete</a></button>
+      </td>
+    </tr>
+
+  </table>
+
+  <a href="/addTicketItem">
+    <button type="button" class="btn btn-primary btn-block">Add New Ticket Item</button>
+  </a>
+
+</div>
+<input type="hidden" id="myInput" th:value="${message}" />
+<script th:inline="javascript">
+    window.onload = function() {
+        var msg = document.getElementById('myInput').value;
+
+        if (msg === "Save Success") {
+            toastr.success("Item added successfully!!");
+        } else if (msg === "Delete Success") {
+            toastr.success("Item deleted successfully!!");
+        } else if (msg === "Delete Failure") {
+            toastr.error("Some error occurred, couldn't delete item");
+        } else if (msg === "Edit Success") {
+            toastr.success("Item updated successfully");
+        }
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    };
+
+</script>
+
+</body>
+</html>
