@@ -1,87 +1,164 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Add a Ticket Item</title>
+    <title>New Ticket</title>
+    <style>
+    .ticket-form {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      width: 120px;
+      font-weight: bold;
+    }
+
+    .form-group .input-field {
+      flex-grow: 1;
+    }
+
+    .form-group .input-field textarea {
+      width: 100%;
+      height: 100px;
+    }
+
+    .form-group .input-field select {
+      width: 100%;
+      height: 30px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .button-group button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button-group button.primary {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .button-group button.secondary {
+      background-color: #ccc;
+      color: #000;
+    }
+
+    .button-group button.create-another {
+      background-color: #2196F3;
+      color: white;
+    }
+
+    .button-group button.delete {
+      background-color: #F44336;
+      color: white;
+    }
+
+    .button-group button.update {
+      background-color: #FF9800;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
+<div class="ticket-form">
+    <div class="button-group">
+        <button class="update">Update</button>
+        <button class="delete">Delete</button>
+    </div>
 
-    <h1 class="p-3">Add a Ticket Item</h1>
-    <form th:action="saveTicketItem" th:method="post" th:object="${ticket}">
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3" for="title">Title</label>
-                <div class="col-md-6">
-                    <input type="text" th:field="*{title}" id="title" class="form-control input-sm"
-                           required="required"/>
-                </div>
-            </div>
+    <div class="form-group">
+        <label>Ticket No:</label>
+        <div class="input-field">
+            <input type="text">
         </div>
+    </div>
 
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3" for="date">Date</label>
-                <div class="=col-md-6">
-                    <input type="date" th:field="*{date}" id="date" class="form-control input-sn" required="required"/>
-                </div>
-            </div>
+    <div class="form-group">
+        <label>Contact:</label>
+        <div class="input-field">
+            <input type="text">
         </div>
+    </div>
 
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3" for="status">Status</label>
-                <div class="col-md-6">
-                    <input type="text" th:field="*{status}" class="form-control input-sm" value="Incomplete"/>
-                </div>
-            </div>
+    <div class="form-group">
+        <label>Subject:</label>
+        <div class="input-field">
+            <input type="text">
         </div>
+    </div>
 
-        <div class="row p-2">
-            <div class="col-md-2">
-                <button type="submit" value="Register" class="btn btn-success">Save</button>
-            </div>
+    <div class="form-group">
+        <label>Location:</label>
+        <div class="input-field">
+            <input type="text">
         </div>
+    </div>
 
-    </form>
+    <div class="form-group">
+        <label>Source:</label>
+        <div class="input-field">
+            <select>
+                <option value="phone">Phone</option>
+                <option value="email">Email</option>
+                <option value="chat">Chat</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Description:</label>
+        <div class="input-field">
+            <textarea></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Status:</label>
+        <div class="input-field">
+            <select>
+                <option value="open">Open</option>
+                <option value="in-progress">In Progress</option>
+                <option value="closed">Closed</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Priority:</label>
+        <div class="input-field">
+            <select>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button class="create-another">Create Another</button>
+        <div>
+            <button class="secondary">Cancel</button>
+            <button class="primary">Create</button>
+        </div>
+    </div>
 </div>
-
-<script th:inline="javascript">
-        window.onload = function() {
-
-            var msg = "$(message)";
-            console.log(msg);
-            if (msg == "Save Failure") {
-                Command: toastr["error"] ("Something went wrong with the save.")
-            }
-
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progessBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-        }
-
-</script>
-
 </body>
 </html>
