@@ -32,34 +32,94 @@ public class Ticket {
 
     @Column
     @Nonnull
+    private String ticketNo;
+
+    @Column
+    @Nonnull
+    private String contact;
+
+    @Column
+    @Nonnull
+    private String subject;
+
+    @Column
+    @Nonnull
+    private String location;
+
+    @Column
+    @Nonnull
+    private String source;
+
+    @Column
+    @Nonnull
+    private String description;
+
+    @Column
+    @Nonnull
     private String status;
 
-    public Ticket() {
-
-    }
+    @Column
+    @Nonnull
+    private String priority;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setID(Long id) {
         this.id = id;
+    }
+
+    public String getTicketNo() {
+        return ticketNo;
+    }
+
+    public void setTicketNo(String ticketNo) {
+        this.ticketNo = ticketNo;
+    }
+
+    public String getContact() {
+        return contact;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
-    public Date getDate() {
-        return date;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {
@@ -68,5 +128,13 @@ public class Ticket {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 }
