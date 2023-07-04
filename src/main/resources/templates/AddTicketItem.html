@@ -78,44 +78,39 @@
   </style>
 </head>
 <body>
-<div class="ticket-form">
-    <div class="button-group">
-        <button class="update">Update</button>
-        <button class="delete">Delete</button>
-    </div>
-
+<form method="post" th:action="@{/saveTicketItem}" class="ticket-form">
     <div class="form-group">
         <label>Ticket No:</label>
         <div class="input-field">
-            <input type="text">
+            <input type="text" name="ticketNo">
         </div>
     </div>
 
     <div class="form-group">
         <label>Contact:</label>
         <div class="input-field">
-            <input type="text">
+            <input type="text" name="contact">
         </div>
     </div>
 
     <div class="form-group">
         <label>Subject:</label>
         <div class="input-field">
-            <input type="text">
+            <input type="text" name="subject">
         </div>
     </div>
 
     <div class="form-group">
         <label>Location:</label>
         <div class="input-field">
-            <input type="text">
+            <input type="text" name="location">
         </div>
     </div>
 
     <div class="form-group">
         <label>Source:</label>
         <div class="input-field">
-            <select>
+            <select name="source">
                 <option value="phone">Phone</option>
                 <option value="email">Email</option>
                 <option value="chat">Chat</option>
@@ -126,14 +121,14 @@
     <div class="form-group">
         <label>Description:</label>
         <div class="input-field">
-            <textarea></textarea>
+            <textarea name="description"></textarea>
         </div>
     </div>
 
     <div class="form-group">
         <label>Status:</label>
         <div class="input-field">
-            <select>
+            <select name="status">
                 <option value="open">Open</option>
                 <option value="in-progress">In Progress</option>
                 <option value="closed">Closed</option>
@@ -144,7 +139,7 @@
     <div class="form-group">
         <label>Priority:</label>
         <div class="input-field">
-            <select>
+            <select name="priority">
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
@@ -153,13 +148,12 @@
     </div>
 
     <div class="button-group">
-        <button class="create-another">Create Another</button>
         <div>
-            <button class="secondary">Cancel</button>
-            <button class="primary">Create</button>
+
+            <button class="primary" type="submit">Create</button>
         </div>
     </div>
-</div>
+</form>
 <script>
     document.querySelector('.update').addEventListener('click', function () {
         console.log('Update button clicked');
